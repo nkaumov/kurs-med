@@ -1,26 +1,24 @@
 const express = require('express');
-const router = express.Router();
-const nurseController = require('../controllers/nurseController');
+const router  = express.Router();
+const nurse   = require('../controllers/nurseController');
 const { ensureAuth, ensureRole } = require('../middleware/authMiddleware');
 
 router.use(ensureAuth, ensureRole('nurse'));
 
-router.get('/dashboard', nurseController.dashboard);
+router.get('/dashboard', nurse.dashboard);
 
-// Пациенты
-router.get('/patients', nurseController.listPatients);
-router.get('/patients/add', nurseController.showAddPatient);
-router.post('/patients/add', nurseController.addPatient);
-router.get('/patients/search', nurseController.searchPatients);
-router.post('/patients/add-existing/:id', nurseController.addExistingPatient);
+router.get('/patients',          nurse.listPatients);
+router.get('/patients/add',      nurse.showAddPatient);
+router.post('/patients/add',     nurse.addPatient);
 
-// Карточка
-router.get('/card/:cardId', nurseController.viewCard);
-router.post('/card/:cardId/status', nurseController.updateStatus);
-router.post('/card/:cardId/add-entry', nurseController.addEntry);
+router.get('/patients/search',   nurse.searchPatients);
+router.post('/patients/add-existing/:id', nurse.addExistingPatient);
 
-// Вызов врача
-router.get('/call-doctor', nurseController.showCallForm);
-router.post('/call-doctor', nurseController.sendCall);
+router.get('/card/:cardId',            nurse.viewCard);
+router.post('/card/:cardId/status',    nurse.updateStatus);
+router.post('/card/:cardId/add-entry', nurse.addEntry);
+
+router.get('/call-doctor',  nurse.showCallForm);
+router.post('/call-doctor', nurse.sendCall);
 
 module.exports = router;

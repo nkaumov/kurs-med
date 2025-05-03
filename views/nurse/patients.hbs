@@ -1,27 +1,29 @@
-{{!> layouts/main }}
-{{#> nurse/dashboard }}
-    <h5>Список пациентов</h5>
-    <table class="striped highlight">
-        <thead>
-            <tr>
-                <th>ФИО</th>
-                <th>Карточка</th>
-                <th>Статус</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each patients}}
-                <tr>
-                    <td>{{this.full_name}}</td>
-                    <td><a href="/nurse/card/{{this.card_id}}">{{this.card_id}}</a></td>
-                    <td>{{this.status}}</td>
-                </tr>
-            {{/each}}
-        </tbody>
-    </table>
+{{> nurseSidebar}}
 
-    <div class="section">
-        <a href="/nurse/patients/add" class="btn green">Добавить пациента</a>
-        <a href="/nurse/patients/search" class="btn blue">Найти существующего</a>
-    </div>
-{{/nurse/dashboard}}
+<div class="main-content">
+  <h5>Список пациентов</h5>
+
+  <table class="highlight responsive-table">
+    <thead>
+      <tr>
+        <th>ФИО</th>
+        <th>Карточка</th>
+        <th>Статус</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each patients}}
+        <tr>
+          <td>{{full_name}}</td>
+          <td><a href="/nurse/card/{{card_id}}">{{card_id}}</a></td>
+          <td>{{status}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <div class="section">
+    <a href="/nurse/patients/add"    class="btn green waves-effect">Добавить пациента</a>
+    <a href="/nurse/patients/search" class="btn blue  waves-effect">Найти существующего</a>
+  </div>
+</div>

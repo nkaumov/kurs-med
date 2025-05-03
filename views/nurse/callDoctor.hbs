@@ -1,22 +1,21 @@
-{{#> nurse/dashboard }}
-    <h5>Срочный вызов врача</h5>
-    <form action="/nurse/call-doctor" method="POST">
-        <div class="input-field">
-            <select name="room_id" required>
-                {{#each rooms}}
-                    <option value="{{this.id}}">{{this.room_number}}</option>
-                {{/each}}
-            </select>
-            <label>Палата</label>
-        </div>
-        <div class="input-field">
-            <select name="doctor_id" required>
-                {{#each doctors}}
-                    <option value="{{this.id}}">{{this.full_name}}</option>
-                {{/each}}
-            </select>
-            <label>Врач</label>
-        </div>
-        <button type="submit" class="btn red">Вызвать</button>
-    </form>
-{{/nurse/dashboard}}
+{{> nurseSidebar}}
+
+<div class="main-content">
+  <h5>Срочный вызов врача</h5>
+
+  <form action="/nurse/call-doctor" method="POST">
+    <div class="input-field">
+      <select name="room_id" required>
+        {{#each rooms}}<option value="{{id}}">{{room_number}}</option>{{/each}}
+      </select><label>Палата</label>
+    </div>
+
+    <div class="input-field">
+      <select name="doctor_id" required>
+        {{#each doctors}}<option value="{{id}}">{{full_name}}</option>{{/each}}
+      </select><label>Врач</label>
+    </div>
+
+    <button class="btn red waves-effect">Вызвать</button>
+  </form>
+</div>
