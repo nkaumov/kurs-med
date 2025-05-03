@@ -1,14 +1,22 @@
-<div id="notifications" class="section">
-  {{#each calls}}
-    <div class="card-panel teal lighten-4 flex-space" data-id="{{id}}">
-      <span>Вызов в палату {{room_number}} ({{call_time}})</span>
-      <button class="btn-flat waves-effect" title="Закрыть">
-        <i class="material-icons">check</i>
-      </button>
-    </div>
-  {{/each}}
-</div>
+{{> doctorHeader}}
 
+<div class="container" style="margin-top:2rem" data-doctor-id="{{doctorId}}">
+  <h5 class="center-align">Срочные вызовы</h5>
+
+  <div id="notifications">
+    {{#each calls}}
+      <div class="card-panel teal lighten-4 flex-space" data-id="{{id}}">
+        <span>
+          Палата&nbsp;{{room_number}}<br class="hide-on-med-and-up">
+          <small>{{call_time}}</small>
+        </span>
+        <button class="btn-flat waves-effect" title="Закрыть">
+          <i class="material-icons">check</i>
+        </button>
+      </div>
+    {{/each}}
+  </div>
+</div>
 
 <audio id="alert-sound" src="/audio/notification.mp3" preload="auto"></audio>
 

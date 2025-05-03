@@ -12,12 +12,21 @@
     padding: 2rem 2rem 4rem;
   }
 
-  /* .flex-space{
+  .flex-space{
     display:flex;
     justify-content:space-between;
     align-items:center;
   }
-   */
+  @media (max-width:600px){
+    .card-panel.flex-space{
+      flex-direction:column;
+      text-align:center;
+    }
+    .card-panel.flex-space button{
+      margin-top:8px;
+    }
+  }
+  
   
   @media (max-width: 992px) {   
     .sidebar {
