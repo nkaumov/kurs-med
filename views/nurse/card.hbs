@@ -1,0 +1,43 @@
+{{#> nurse/dashboard }}
+    <h5>Карточка пациента: {{patient.full_name}}</h5>
+    <p>Статус: {{patient.status}}</p>
+
+    <form action="/nurse/card/{{patient.card_id}}/status" method="POST">
+        <div class="input-field">
+            <select name="status_id">
+                {{#each statuses}}
+                    <option value="{{this.id}}" {{#if (eq this.id ../patient.status_id)}}selected{{/if}}>{{this.name}}</option>
+                {{/each}}
+            </select>
+            <label>Изменить статус</label>
+        </div>
+        <button class="btn orange">Сохранить</button>
+    </form>
+
+    <h6 class="mt-4">Записи</h6>
+    <ul class="collection">
+        {{#each entries}}
+            <li class="collection-item">
+                <strong>{{this.entry_date}} {{this.entry_time}}</strong>: {{this.note}}
+            </li>
+        {{/each}}
+    </ul>
+
+    <form action="/nurse/card/{{patient.card_id}}/add-entry" method="POST">
+        <div class="row">
+            <div class="input-field col s4">
+                <input type="date" name="entry_date" required>
+                <label>Дата</label>
+            </div>
+            <div class="input-field col s4">
+                <input type="time" name="entry_time" required>
+                <label>Время</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea name="note" class="materialize-textarea" required></textarea>
+                <label>Запись</label>
+            </div>
+        </div>
+        <button type="submit" class="btn green">Добавить запись</button>
+    </form>
+{{/nurse/dashboard}}

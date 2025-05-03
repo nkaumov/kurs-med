@@ -1,0 +1,17 @@
+<div class="container">
+    <h5 class="center-align">Панель врача</h5>
+    <div id="notifications" class="section">
+        {{#each calls}}
+            <div class="card-panel teal lighten-4">
+                Вызов в палату {{this.room_number}} от {{this.call_time}}
+            </div>
+        {{/each}}
+    </div>
+</div>
+<audio id="alert-sound" src="/audio/notification.mp3" preload="auto"></audio>
+<script>
+    const audio = document.getElementById('alert-sound');
+    if ({{new_call}}) {
+        audio.play();
+    }
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <style>
+        body {
+            background-color: #e0f7fa;
+        }
+        .login-card {
+            margin-top: 10%;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row center-align">
+            <div class="col s12 m6 offset-m3 card login-card z-depth-3 white">
+                <h5>Авторизация</h5>
+                {{#if message}}
+                    <div class="red-text">{{message}}</div>
+                {{/if}}
+                <form action="/login" method="POST">
+                    <div class="input-field">
+                        <input type="text" name="login" required>
+                        <label for="login">Логин</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="password" required>
+                        <label for="password">Пароль</label>
+                    </div>
+                    <button type="submit" class="btn waves-effect waves-light cyan darken-2">Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

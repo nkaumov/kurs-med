@@ -1,0 +1,51 @@
+{{#> nurse/dashboard }}
+    <h5>Добавление пациента</h5>
+    <form action="/nurse/patients/add" method="POST">
+        <div class="input-field">
+            <input type="text" name="full_name" required>
+            <label>ФИО</label>
+        </div>
+        <div class="input-field">
+            <input type="number" name="age" required>
+            <label>Возраст</label>
+        </div>
+        <div class="input-field">
+            <select name="gender">
+                <option value="male">Мужской</option>
+                <option value="female">Женский</option>
+                <option value="other">Другой</option>
+            </select>
+            <label>Пол</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="disease" required>
+            <label>Болезнь</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="severity">
+            <label>Степень тяжести</label>
+        </div>
+        <div class="input-field">
+            <select name="room_id">
+                {{#each rooms}}
+                    <option value="{{this.id}}">{{this.room_number}}</option>
+                {{/each}}
+            </select>
+            <label>Палата</label>
+        </div>
+        <div class="input-field">
+            <select name="doctor_id">
+                {{#each doctors}}
+                    <option value="{{this.id}}">{{this.full_name}}</option>
+                {{/each}}
+            </select>
+            <label>Лечащий врач</label>
+        </div>
+        <div class="input-field">
+            <input type="date" name="date_in" required>
+            <label>Дата поступления</label>
+        </div>
+
+        <button type="submit" class="btn green">Добавить</button>
+    </form>
+{{/nurse/dashboard}}
