@@ -1,17 +1,16 @@
-<div class="container">
-    <h5 class="center-align">Панель врача</h5>
-    <div id="notifications" class="section">
-        {{#each calls}}
-            <div class="card-panel teal lighten-4">
-                Вызов в палату {{this.room_number}} от {{this.call_time}}
-            </div>
-        {{/each}}
+<div id="notifications" class="section">
+  {{#each calls}}
+    <div class="card-panel teal lighten-4 flex-space" data-id="{{id}}">
+      <span>Вызов в палату {{room_number}} ({{call_time}})</span>
+      <button class="btn-flat waves-effect" title="Закрыть">
+        <i class="material-icons">check</i>
+      </button>
     </div>
+  {{/each}}
 </div>
+
+
 <audio id="alert-sound" src="/audio/notification.mp3" preload="auto"></audio>
-<script>
-    const audio = document.getElementById('alert-sound');
-    if ({{new_call}}) {
-        audio.play();
-    }
-</script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/doctorNotifications.js"></script>

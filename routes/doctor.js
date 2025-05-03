@@ -1,10 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const doctorController = require('../controllers/doctorController');
+const router  = require('express').Router();
+const doctor  = require('../controllers/doctorController');
 const { ensureAuth, ensureRole } = require('../middleware/authMiddleware');
 
 router.use(ensureAuth, ensureRole('doctor'));
 
-router.get('/dashboard', doctorController.dashboard);
+router.get('/dashboard', doctor.dashboard);
+router.post('/close-call/:id', doctor.closeCall);
 
 module.exports = router;
+

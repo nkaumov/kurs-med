@@ -1,0 +1,46 @@
+{{> nurseSidebar}}
+
+<div class="main-content">
+  <h5>Добавить ранее выписанного пациента</h5>
+
+  <table class="highlight">
+    <thead>
+      <tr><th>ФИО</th><th>Карточка</th><th>Действие</th></tr>
+    </thead>
+    <tbody>
+      {{#each patients}}
+        <tr>
+          <td>{{full_name}}</td>
+          <td>{{card_id}}</td>
+          <td>
+            <a href="#modal{{id}}" class="btn-small modal-trigger">Выбрать</a>
+
+            <!-- Модалка выбора комнаты/врача -->
+            <div id="modal{{id}}" class="modal">
+              <div class="modal-content">
+                <h6>{{full_name}}</h6>
+                <form action="/nurse/patients/add-existing/{{id}}" method="POST">
+                  <div class="input-field">
+                    <select name="room_id" required>
+                      {{#each ../rooms}}<option value="{{id}}">{{room_number}}</option>{{/each}}
+                    </select><label>Палата</label>
+                  </div>
+                  <div class="input-field">
+                    <select name="doctor_id" required>
+                      {{#each ../doctors}}<option value="{{id}}">{{full_name}}</option>{{/each}}
+                    </select><label>Врач</label>
+                  </div>
+                  <div class="input-field">
+                    <input type="date" name="date_in" required>
+                    <label class="active">Дата поступления</label>
+                  </div>
+                  <button class="btn green waves-effect">Заселить</button>
+                </form>
+              </div>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

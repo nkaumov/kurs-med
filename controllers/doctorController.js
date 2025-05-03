@@ -1,24 +1,23 @@
 const db = require('../config/db');
 
 exports.dashboard = (req, res) => {
-    const doctorId = req.session.user.id;
-
-    const sql = `
-        SELECT dc.call_time, r.room_number
-        FROM doctor_calls dc
-        JOIN rooms r ON dc.room_id = r.id
-        WHERE dc.doctor_id = ? AND dc.status = 'pending'
-        ORDER BY dc.call_time DESC`;
-
-    db.query(sql, [doctorId], (err, results) => {
-        if (err) throw err;
-
-        db.query('UPDATE doctor_calls SET status = "seen" WHERE doctor_id = ? AND status = "pending"', [doctorId]);
-
-        res.render('doctor/dashboard', {
-            title: 'Врач',
-            calls: results,
-            new_call: results.length > 0
-        });
-    });
+  const id = req.session.user.id;
+  const sql = `
+    SELECT r.room_number, dc.call_time
+    FROM doctor_calls dc
+    JOIN rooms r ON r.id = dc.room_id
+    WHERE dc.doctor_id = ?
+    ORDER BY dc.call_time DESC
+    LIMIT 20`;
+  db.query(sql, [id], (_, calls) =>
+    res.render('doctor/dashboard', { title: 'Врач', calls })
+  );
 };
+
+exports.closeCall = (req, res) => {
+    const id = req.params.id;
+    db.query('UPDATE doctor_calls SET status="closed" WHERE id=?', [id], () =>
+      res.json({ ok: true })
+    );
+  };
+  

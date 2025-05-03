@@ -9,7 +9,7 @@
 
   <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body class="cyan lighten-5">
+<body class="cyan lighten-5" {{#if user}}data-doctor-id="{{user.id}}"{{/if}}>
 
   {{{body}}}
 

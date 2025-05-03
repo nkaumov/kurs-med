@@ -11,8 +11,9 @@ router.get('/patients',          nurse.listPatients);
 router.get('/patients/add',      nurse.showAddPatient);
 router.post('/patients/add',     nurse.addPatient);
 
-router.get('/patients/search',   nurse.searchPatients);
+router.get('/patients/search',            nurse.searchPatients);
 router.post('/patients/add-existing/:id', nurse.addExistingPatient);
+
 
 router.get('/card/:cardId',            nurse.viewCard);
 router.post('/card/:cardId/status',    nurse.updateStatus);
